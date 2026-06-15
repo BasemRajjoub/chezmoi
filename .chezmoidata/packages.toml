@@ -11,7 +11,11 @@ apps = [
   "extras/age",                # secret encrypt/decrypt for chezmoi (key at ~/.config/chezmoi/key.txt)
   "extras/copyq",
   "extras/everything",
+  "extras/caffeine",           # keep-awake (startup entry below)
   "extras/notepadplusplus",    # default .txt editor (see [[defaults]] below)
+  "main/tectonic",             # LaTeX engine (was loose binary on Desktop)
+  "extras/tex-fmt",            # LaTeX formatter (was loose binary on Desktop)
+  "extras/sumatrapdf",         # PDF viewer for latex-workshop synctex
   # "scoopet/Textify-Portable" ships only setup.exe (no runnable Textify.exe) — use winget below instead.
   # "main/pwsh", "main/git", "main/ripgrep", "extras/vscode", ...
 ]
@@ -44,6 +48,11 @@ args = ""
 name = "Everything"
 exe  = 'scoop\apps\everything\current\Everything.exe'
 args = "-startup"
+
+[[startup]]
+name = "Caffeine"
+exe  = 'scoop\apps\caffeine\current\caffeine64.exe'
+args = ""
 
 # Textify installed via winget (rammichael.Textify) → AppData\Local\Programs\Textify.
 # Skipped on machines where it isn't present (Test-Path guard in the startup script).

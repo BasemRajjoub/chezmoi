@@ -132,7 +132,7 @@
         }
     ],
     "diffEditor.hideUnchangedRegions.enabled": true,
-    "latex-workshop.view.pdf.external.synctex.command": "\"C:\\Users\\e6s-f58\\AppData\\Local\\SumatraPDF\\SumatraPDF.exe\"",
+    "latex-workshop.view.pdf.external.synctex.command": "\"{{ .chezmoi.homeDir | replace "/" "\\\\" }}\\scoop\\apps\\sumatrapdf\\current\\SumatraPDF.exe\"",
     "python.defaultInterpreterPath": "\\\\?\\C:\\msys64\\clang64\\bin\\python.exe",
     "remote.SSH.remotePlatform": {
         "luis": "linux"
@@ -151,5 +151,5 @@
         "*.mmed": "med",
         "*.rmed": "med"
     },
-    "vs-code-aster.pythonExecutablePath": "c:\\Users\\e6s-f58\\AppData\\Roaming\\Code\\User\\globalStorage\\simvia.vs-code-aster\\.venv\\Scripts\\python.exe"
+    "vs-code-aster.pythonExecutablePath": "{{ .chezmoi.homeDir | replace "/" "\\\\" }}\\AppData\\Roaming\\Code\\User\\globalStorage\\simvia.vs-code-aster\\.venv\\Scripts\\python.exe"
 }

@@ -25,7 +25,7 @@ apps = [
 [winget]
 # winget often needs admin; keep empty unless a pkg is unavailable in scoop.
 apps = [
-  # { id = "rammichael.Textify" },
+  { id = "rammichael.Textify" },   # installs to AppData\Local\Programs\Textify (per-user, no admin)
 ]
 
 # Run-at-login entries (HKCU Run key, no admin). exe = path under $HOME, literal backslashes.
@@ -40,6 +40,9 @@ name = "Everything"
 exe  = 'scoop\apps\everything\current\Everything.exe'
 args = "-startup"
 
-# Textify: scoop package has no runnable exe. To use it, install via winget
-# ({ id = "rammichael.Textify" } above) then re-add a [[startup]] entry pointing
-# at its installed path.
+# Textify installed via winget (rammichael.Textify) → AppData\Local\Programs\Textify.
+# Skipped on machines where it isn't present (Test-Path guard in the startup script).
+[[startup]]
+name = "Textify"
+exe  = 'AppData\Local\Programs\Textify\Textify.exe'
+args = "-hidewnd"

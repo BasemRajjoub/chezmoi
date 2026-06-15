@@ -5,7 +5,7 @@ $regPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run"
 
 $entries = @(
 {{ range .startup -}}
-  @{ Name = "{{ .name }}"; Exe = (Join-Path $env:USERPROFILE '{{ .exe }}'); Args = "{{ .args }}" },
+  @{ Name = "{{ .name }}"; Exe = (Join-Path $env:USERPROFILE '{{ .exe }}'); Args = "{{ .args }}" }
 {{ end -}}
 )
 

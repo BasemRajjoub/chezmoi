@@ -10,7 +10,7 @@ apps = [
   "main/chezmoi",
   "extras/copyq",
   "extras/everything",
-  "scoopet/Textify-Portable",
+  # "scoopet/Textify-Portable" ships only setup.exe (no runnable Textify.exe) — use winget below instead.
   # "main/pwsh", "main/git", "main/ripgrep", "extras/vscode", ...
 ]
 
@@ -40,7 +40,6 @@ name = "Everything"
 exe  = 'scoop\apps\everything\current\Everything.exe'
 args = "-startup"
 
-[[startup]]
-name = "Textify"
-exe  = 'scoop\apps\Textify-Portable\current\Textify.exe'
-args = "-hidewnd"
+# Textify: scoop package has no runnable exe. To use it, install via winget
+# ({ id = "rammichael.Textify" } above) then re-add a [[startup]] entry pointing
+# at its installed path.

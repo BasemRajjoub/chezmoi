@@ -1,11 +1,4 @@
-{{- /* Prompts on `chezmoi init`; declares the PS interpreter so chezmoi can run .ps1 scripts on Windows. */ -}}
-{{- $name := promptStringOnce . "name" "Full name" -}}
-{{- $email := promptStringOnce . "email" "Git email" -}}
-
-[data]
-    name  = {{ $name | quote }}
-    email = {{ $email | quote }}
-
+{{- /* Declares the PS interpreter so chezmoi can run .ps1 scripts on Windows. */ -}}
 [interpreters.ps1]
     command = "powershell"
     args = ["-NoProfile", "-ExecutionPolicy", "Bypass"]

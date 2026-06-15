@@ -58,7 +58,10 @@ args = "-hidewnd"
 #   exe    = handler path under $HOME (literal backslashes); skipped if missing
 #   progid = ProgId to register/point at exe. Use 'Applications\<exe-leaf>' for
 #            portable apps — the script creates that ProgId's shell\open\command.
-[[defaults]]
-ext    = ".txt"
-exe    = 'scoop\shims\notepad++.exe'
-progid = 'Applications\notepad++.exe'
+# NOTE: no auto-reconcile — removing/commenting an entry does NOT revert an
+# already-set association; delete its HKCU UserChoice key manually.
+# DISABLED for now. Uncomment to make Notepad++ the default .txt editor.
+# [[defaults]]
+# ext    = ".txt"
+# exe    = 'scoop\shims\notepad++.exe'
+# progid = 'Applications\notepad++.exe'

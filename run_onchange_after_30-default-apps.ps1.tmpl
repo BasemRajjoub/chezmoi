@@ -486,9 +486,9 @@ function Set-FTA {
 # ===== END vendored Set-FTA =====
 
 $defaults = @(
-{{ range .defaults -}}
+{{ if hasKey . "defaults" }}{{ range .defaults -}}
   @{ Ext = "{{ .ext }}"; Exe = (Join-Path $env:USERPROFILE '{{ .exe }}'); ProgId = '{{ .progid }}' }
-{{ end -}}
+{{ end }}{{ end -}}
 )
 
 foreach ($d in $defaults) {

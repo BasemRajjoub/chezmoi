@@ -1,7 +1,12 @@
 # startup-apps — declarative HKCU Run keys from packages.toml [[startup]]. No admin.
 # Re-runs only when rendered content changes. Skips entries whose exe is missing.
+# Reconciles orphans: a name we managed last run but is no longer declared gets its
+# Run value deleted. Tracks our own names in a marker key so we never touch keys we
+# didn't create.
 $ErrorActionPreference = "Stop"
-$regPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run"
+$regPath    = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run"
+$markerPath = "HKCU:\Software\chezmoi"
+$markerName = "ManagedStartup"
 
 $entries = @(
 {{ range .startup -}}
@@ -9,6 +14,21 @@ $entries = @(
 {{ end -}}
 )
 
+# Orphan cleanup: delete Run values we set before but no longer declare.
+$declared = $entries | ForEach-Object { $_.Name }
+$prev = @()
+if (Test-Path $markerPath) {
+    $raw = (Get-ItemProperty -Path $markerPath -Name $markerName -ErrorAction SilentlyContinue).$markerName
+    if ($raw) { $prev = $raw -split ';' | Where-Object { $_ } }
+}
+foreach ($old in $prev) {
+    if ($declared -notcontains $old) {
+        Remove-ItemProperty -Path $regPath -Name $old -ErrorAction SilentlyContinue
+        Write-Host "startup removed (orphan): $old"
+    }
+}
+
+# Apply declared entries (skip if exe missing).
 foreach ($e in $entries) {
     if (Test-Path $e.Exe) {
         $val = if ($e.Args) { "`"$($e.Exe)`" $($e.Args)" } else { "`"$($e.Exe)`"" }
@@ -18,3 +38,7 @@ foreach ($e in $entries) {
         Write-Warning "startup skip $($e.Name): missing $($e.Exe)"
     }
 }
+
+# Persist the managed-name list for next run's reconcile.
+if (-not (Test-Path $markerPath)) { New-Item -Path $markerPath -Force | Out-Null }
+Set-ItemProperty -Path $markerPath -Name $markerName -Value ($declared -join ';')

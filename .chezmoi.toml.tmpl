@@ -1,4 +1,15 @@
-{{- /* Declares the PS interpreter so chezmoi can run .ps1 scripts on Windows. */ -}}
+{{- /* PS interpreter (run .ps1 scripts on Windows) + age secret encryption. */ -}}
+# Secret management via age (https://chezmoi.io/user-guide/encryption/age/).
+# Private identity lives ONLY at ~/.config/chezmoi/key.txt — never committed.
+# Public recipient below is safe in git. Add a secret: `chezmoi add --encrypt <path>`
+# → stored as encrypted_*.age in repo. Apply with no encrypted files works without the key.
+# NOTE: encryption must be a TOP-LEVEL key — keep it above every [table] header.
+encryption = "age"
+
+[age]
+    identity  = "~/.config/chezmoi/key.txt"
+    recipient = "age1747v8d2j9vyuelh98r37q4vcl8kka5j0fupces7q004a3l87w40snctqag"
+
 [interpreters.ps1]
     command = "powershell"
     args = ["-NoProfile", "-ExecutionPolicy", "Bypass"]

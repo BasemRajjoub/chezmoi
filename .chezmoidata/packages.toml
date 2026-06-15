@@ -8,6 +8,7 @@ buckets = [
 ]
 apps = [
   "main/chezmoi",
+  "extras/age",        # secret encrypt/decrypt for chezmoi (key at ~/.config/chezmoi/key.txt)
   "extras/copyq",
   "extras/everything",
   # "scoopet/Textify-Portable" ships only setup.exe (no runnable Textify.exe) — use winget below instead.
@@ -29,7 +30,8 @@ apps = [
 ]
 
 # Run-at-login entries (HKCU Run key, no admin). exe = path under $HOME, literal backslashes.
-# Removing an entry here does NOT delete its old Run key automatically (see SETUP.md).
+# Removing an entry here DOES delete its old Run key on next apply (startup script reconciles
+# against a managed-name marker at HKCU:\Software\chezmoi\ManagedStartup).
 [[startup]]
 name = "CopyQ"
 exe  = 'scoop\apps\copyq\current\copyq.exe'

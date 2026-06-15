@@ -1,0 +1,155 @@
+{
+    "kilo-code.allowedCommands": [
+        "git log",
+        "git diff",
+        "git show",
+        "cd src/Paper1/figures/inkscape/tikz",
+        "pdflatex sat_tikz_circles.tex",
+        "cd",
+        "pdflatex",
+        ".tectonictectonic.exe",
+        "git",
+        "cd tmp",
+        "make",
+        "dir"
+    ],
+    "kilo-code.deniedCommands": [],
+    "git.enableSmartCommit": true,
+    "git.confirmSync": false,
+    "latex-workshop.bibtex-fields.sort.enabled": true,
+    "latex-workshop.bibtex-format.sort.enabled": true,
+    "latex-workshop.latex.autoBuild.run": "onSave",
+    "latex-workshop.synctex.afterBuild.enabled": true,
+    "latex-workshop.hover.preview.scale": 2,
+    "latex-workshop.view.pdf.color.dark.backgroundColor": "#222222",
+    "terminal.integrated.defaultProfile.windows": "Git Bash",
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "source": "PowerShell",
+            "icon": "terminal-powershell"
+        },
+        "Command Prompt": {
+            "path": [
+                "${env:windir}\\Sysnative\\cmd.exe",
+                "${env:windir}\\System32\\cmd.exe"
+            ],
+            "args": [],
+            "icon": "terminal-cmd"
+        },
+        "Git Bash": {
+            "source": "Git Bash"
+        },
+        "MSYS2": {
+            "path": "C:/Program Files/Git/bin/",
+            "args": [
+                "--login",
+                "-i"
+            ],
+            "env": {
+                "MSYSTEM": "MINGW64"
+            }
+        },
+        "Git Bas": {
+            "path": "C:\\Program Files\\Git\\bin\\bash.exe",
+            "args": [
+                "--login",
+                "-i"
+            ]
+        }
+    },
+    "claudeCode.selectedModel": "sonnet",
+    "latex-workshop.formatting.latex": "tex-fmt",
+    "diffEditor.ignoreTrimWhitespace": true,
+    "claudeCode.allowDangerouslySkipPermissions": true,
+    "claudeCode.preferredLocation": "panel",
+    "latex-workshop.latex.recipes": [
+
+        //   {
+        //     "name": "tectonic",
+        //     "tools": [
+        //         "tectonic"
+        //     ]
+        // },
+        {
+            "name": "latexmk",
+            "tools": [
+                "latexmk"
+            ]
+        },
+        {
+            "name": "latexmk (latexmkrc)",
+            "tools": [
+                "latexmk_rconly"
+            ]
+        },
+        {
+            "name": "latexmk (lualatex)",
+            "tools": [
+                "lualatexmk"
+            ]
+        },
+        {
+            "name": "latexmk (xelatex)",
+            "tools": [
+                "xelatexmk"
+            ]
+        },
+        {
+            "name": "pdflatex -> bibtex -> pdflatex * 2",
+            "tools": [
+                "pdflatex",
+                "bibtex",
+                "pdflatex",
+                "pdflatex"
+            ]
+        },
+        {
+            "name": "Compile Rnw files",
+            "tools": [
+                "rnw2tex",
+                "latexmk"
+            ]
+        },
+        {
+            "name": "Compile Jnw files",
+            "tools": [
+                "jnw2tex",
+                "latexmk"
+            ]
+        },
+        {
+            "name": "Compile Pnw files",
+            "tools": [
+                "pnw2tex",
+                "latexmk"
+            ]
+        },
+        {
+            "name": "tectonic",
+            "tools": [
+                "tectonic"
+            ]
+        }
+    ],
+    "diffEditor.hideUnchangedRegions.enabled": true,
+    "latex-workshop.view.pdf.external.synctex.command": "\"C:\\Users\\e6s-f58\\AppData\\Local\\SumatraPDF\\SumatraPDF.exe\"",
+    "python.defaultInterpreterPath": "\\\\?\\C:\\msys64\\clang64\\bin\\python.exe",
+    "remote.SSH.remotePlatform": {
+        "luis": "linux"
+    },
+    "kilo-code.debug": false,
+    "terminal.integrated.commandsToSkipShell": [
+        "kilo-code.new.agentManagerOpen",
+        "kilo-code.new.agentManager.showTerminal"
+    ],
+    "chat.disableAIFeatures": true,
+    "editor.wordWrap": "on",
+    "editor.accessibilitySupport": "off",
+    "git.replaceTagsWhenPull": true,
+    "files.associations": {
+        "*.med": "med",
+        "*.mmed": "med",
+        "*.rmed": "med"
+    },
+    "vs-code-aster.pythonExecutablePath": "c:\\Users\\e6s-f58\\AppData\\Roaming\\Code\\User\\globalStorage\\simvia.vs-code-aster\\.venv\\Scripts\\python.exe"
+}

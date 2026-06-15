@@ -1,0 +1,42 @@
+[
+    {
+        "key": "f6",
+        "command": "command-runner.run",
+        "args": {
+            "command": "ccx"
+        },
+        "when": "resourceExtname == .c"
+    },
+    {
+        "key": "f4",
+        "command": "command-runner.run",
+        "args": {
+            "command": "build"
+        },
+        "when": "resourceExtname == .c"
+    },
+    {
+        "key": "f4",
+        "command": "command-runner.run",
+        "args": {
+            "command": "build"
+        },
+        "when": "resourceExtname == .cpp"
+    },
+    {
+        "key": "f4",
+        "command": "command-runner.run",
+        "args": {
+            "command": "tectonic"
+        },
+        "when": "resourceExtname == .tex"
+    },
+    {
+        "key": "f6",
+        "command": "command-runner.run",
+        "args": {
+            "command": "tex-fmt"
+        },
+        "when": "resourceExtname == .tex"
+    },
+]

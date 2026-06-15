@@ -11,7 +11,9 @@ $haveBuckets = (scoop bucket list).Name
 if ($haveBuckets -notcontains "{{ .name }}") { scoop bucket add {{ .name }}{{ if hasKey . "url" }} {{ .url }}{{ end }} }
 {{ end -}}
 
-scoop install {{ range .scoop.apps }}{{ . }} {{ end }}
+{{- $extra := list -}}
+{{- if hasKey .scoop "byHost" -}}{{- if hasKey .scoop.byHost .chezmoi.hostname -}}{{- $extra = index .scoop.byHost .chezmoi.hostname -}}{{- end -}}{{- end -}}
+scoop install {{ range .scoop.apps }}{{ . }} {{ end }}{{ range $extra }}{{ . }} {{ end }}
 
 {{ range .winget.apps -}}
 if (-not (winget list --id {{ .id }} -e 2>$null | Select-String "{{ .id }}")) {

@@ -14,6 +14,14 @@ apps = [
   # "main/pwsh", "main/git", "main/ripgrep", "extras/vscode", ...
 ]
 
+# Per-machine extras: installed ONLY on the matching hostname (chezmoi .chezmoi.hostname).
+# Shared apps above install everywhere; these add to them per box.
+[scoop.byHost]
+"iwes-id88" = [
+  # work laptop extras, e.g. "extras/vscode"
+]
+# "home-pc" = [ "extras/obsidian" ]
+
 [winget]
 # winget often needs admin; keep empty unless a pkg is unavailable in scoop.
 apps = [

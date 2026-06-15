@@ -1,0 +1,38 @@
+# SINGLE SOURCE OF TRUTH. Edit -> `chezmoi apply`. Idempotent.
+# Auto-loaded into template data as .scoop / .winget / .startup
+
+[scoop]
+buckets = [
+  { name = "extras" },
+  { name = "scoopet", url = "https://github.com/ACooper81/scoop-apps" },
+]
+apps = [
+  "main/chezmoi",
+  "extras/copyq",
+  "extras/everything",
+  "scoopet/Textify-Portable",
+  # "main/pwsh", "main/git", "main/ripgrep", "extras/vscode", ...
+]
+
+[winget]
+# winget often needs admin; keep empty unless a pkg is unavailable in scoop.
+apps = [
+  # { id = "rammichael.Textify" },
+]
+
+# Run-at-login entries (HKCU Run key, no admin). exe = path under $HOME, literal backslashes.
+# Removing an entry here does NOT delete its old Run key automatically (see SETUP.md).
+[[startup]]
+name = "CopyQ"
+exe  = 'scoop\apps\copyq\current\copyq.exe'
+args = ""
+
+[[startup]]
+name = "Everything"
+exe  = 'scoop\apps\everything\current\Everything.exe'
+args = "-startup"
+
+[[startup]]
+name = "Textify"
+exe  = 'scoop\apps\Textify-Portable\current\Textify.exe'
+args = "-hidewnd"

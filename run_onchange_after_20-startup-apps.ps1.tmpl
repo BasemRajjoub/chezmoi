@@ -1,0 +1,20 @@
+# startup-apps — declarative HKCU Run keys from packages.toml [[startup]]. No admin.
+# Re-runs only when rendered content changes. Skips entries whose exe is missing.
+$ErrorActionPreference = "Stop"
+$regPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run"
+
+$entries = @(
+{{ range .startup -}}
+  @{ Name = "{{ .name }}"; Exe = (Join-Path $env:USERPROFILE '{{ .exe }}'); Args = "{{ .args }}" },
+{{ end -}}
+)
+
+foreach ($e in $entries) {
+    if (Test-Path $e.Exe) {
+        $val = if ($e.Args) { "`"$($e.Exe)`" $($e.Args)" } else { "`"$($e.Exe)`"" }
+        Set-ItemProperty -Path $regPath -Name $e.Name -Value $val
+        Write-Host "startup set: $($e.Name)"
+    } else {
+        Write-Warning "startup skip $($e.Name): missing $($e.Exe)"
+    }
+}

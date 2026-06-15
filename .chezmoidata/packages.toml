@@ -8,9 +8,10 @@ buckets = [
 ]
 apps = [
   "main/chezmoi",
-  "extras/age",        # secret encrypt/decrypt for chezmoi (key at ~/.config/chezmoi/key.txt)
+  "extras/age",                # secret encrypt/decrypt for chezmoi (key at ~/.config/chezmoi/key.txt)
   "extras/copyq",
   "extras/everything",
+  "extras/notepadplusplus",    # default .txt editor (see [[defaults]] below)
   # "scoopet/Textify-Portable" ships only setup.exe (no runnable Textify.exe) — use winget below instead.
   # "main/pwsh", "main/git", "main/ripgrep", "extras/vscode", ...
 ]
@@ -25,8 +26,10 @@ apps = [
 
 [winget]
 # winget often needs admin; keep empty unless a pkg is unavailable in scoop.
+# assertExe (path under $HOME): after install, script verifies it exists and
+# ERRORS if missing — turns a silent failed install into a loud failure.
 apps = [
-  { id = "rammichael.Textify" },   # installs to AppData\Local\Programs\Textify (per-user, no admin)
+  { id = "rammichael.Textify", assertExe = 'AppData\Local\Programs\Textify\Textify.exe' },
 ]
 
 # Run-at-login entries (HKCU Run key, no admin). exe = path under $HOME, literal backslashes.
@@ -48,3 +51,14 @@ args = "-startup"
 name = "Textify"
 exe  = 'AppData\Local\Programs\Textify\Textify.exe'
 args = "-hidewnd"
+
+# Default file-type associations (per-user UserChoice, no admin). Set via the
+# pure-PowerShell hash in run_onchange_after_30-default-apps.ps1.tmpl.
+#   ext    = file extension incl. dot
+#   exe    = handler path under $HOME (literal backslashes); skipped if missing
+#   progid = ProgId to register/point at exe. Use 'Applications\<exe-leaf>' for
+#            portable apps — the script creates that ProgId's shell\open\command.
+[[defaults]]
+ext    = ".txt"
+exe    = 'scoop\shims\notepad++.exe'
+progid = 'Applications\notepad++.exe'

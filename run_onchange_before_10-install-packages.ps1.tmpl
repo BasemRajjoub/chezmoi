@@ -19,4 +19,9 @@ scoop install {{ range .scoop.apps }}{{ . }} {{ end }}{{ range $extra }}{{ . }} 
 if (-not (winget list --id {{ .id }} -e 2>$null | Select-String "{{ .id }}")) {
     winget install -e --id {{ .id }} --accept-source-agreements --accept-package-agreements
 }
+{{ if hasKey . "assertExe" -}}
+if (-not (Test-Path (Join-Path $env:USERPROFILE '{{ .assertExe }}'))) {
+    Write-Error "winget {{ .id }} installed but expected exe missing: {{ .assertExe }} (needs admin? source down?)"
+}
+{{ end -}}
 {{ end -}}

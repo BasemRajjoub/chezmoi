@@ -43,6 +43,14 @@ git add . ; git commit -m "..." ; git push
 Add a setting file under chezmoi management: `chezmoi add <path>` (e.g.
 `chezmoi add $env:APPDATA\Code\User\settings.json` for VSCode).
 
+> **App-mutated configs need `--force`.** Apps like VSCode and Handy rewrite
+> their own settings at runtime. When that happens `chezmoi apply` detects the
+> target changed since it last wrote it and **prompts interactively**
+> (`diff/overwrite/...`) — which HANGS an unattended run. Use
+> `chezmoi apply --force` for daily applies to overwrite with the managed
+> version. Fresh-machine `init --apply` is unaffected (files don't pre-exist).
+> To instead keep an in-app change, `chezmoi re-add` before applying.
+
 ---
 
 ## Secrets (age encryption)

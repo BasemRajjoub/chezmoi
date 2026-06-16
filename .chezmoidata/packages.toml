@@ -4,7 +4,6 @@
 [scoop]
 buckets = [
   { name = "extras" },
-  { name = "scoopet", url = "https://github.com/ACooper81/scoop-apps" },
 ]
 apps = [
   "main/chezmoi",
@@ -16,7 +15,8 @@ apps = [
   "main/tectonic",             # LaTeX engine (was loose binary on Desktop)
   "extras/tex-fmt",            # LaTeX formatter (was loose binary on Desktop)
   "extras/sumatrapdf",         # PDF viewer for latex-workshop synctex
-  # "scoopet/Textify-Portable" ships only setup.exe (no runnable Textify.exe) — use winget below instead.
+  "extras/handy",              # local speech-to-text (startup entry below; settings age-encrypted)
+  # Textify: scoop Textify-Portable ships only setup.exe (no runnable exe) — installed via winget instead.
   # "main/pwsh", "main/git", "main/ripgrep", "extras/vscode", ...
 ]
 
@@ -52,6 +52,14 @@ args = "-startup"
 [[startup]]
 name = "Caffeine"
 exe  = 'scoop\apps\caffeine\current\caffeine64.exe'
+args = ""
+
+# Handy also self-registers autostart (settings_store.json autostart_enabled=true);
+# this entry guarantees the Run key on a fresh machine before Handy's first launch.
+# Same key name + scoop exe path, so the two agree. start_hidden=true → tray, no args.
+[[startup]]
+name = "Handy"
+exe  = 'scoop\apps\handy\current\handy.exe'
 args = ""
 
 # Textify installed via winget (rammichael.Textify) → AppData\Local\Programs\Textify.

@@ -11,7 +11,7 @@ apps = [
   "extras/copyq",
   "extras/everything",
   "extras/caffeine",           # keep-awake (startup entry below)
-  "extras/notepadplusplus",    # default .txt editor (see [[defaults]] below)
+  "extras/notepadplusplus",    # text editor
   "main/tectonic",             # LaTeX engine (was loose binary on Desktop)
   "extras/tex-fmt",            # LaTeX formatter (was loose binary on Desktop)
   "extras/sumatrapdf",         # PDF viewer for latex-workshop synctex
@@ -68,17 +68,3 @@ args = ""
 name = "Textify"
 exe  = 'AppData\Local\Programs\Textify\Textify.exe'
 args = "-hidewnd"
-
-# Default file-type associations (per-user UserChoice, no admin). Set via the
-# pure-PowerShell hash in run_onchange_after_30-default-apps.ps1.tmpl.
-#   ext    = file extension incl. dot
-#   exe    = handler path under $HOME (literal backslashes); skipped if missing
-#   progid = ProgId to register/point at exe. Use 'Applications\<exe-leaf>' for
-#            portable apps — the script creates that ProgId's shell\open\command.
-# NOTE: no auto-reconcile — removing/commenting an entry does NOT revert an
-# already-set association; delete its HKCU UserChoice key manually.
-# DISABLED for now. Uncomment to make Notepad++ the default .txt editor.
-# [[defaults]]
-# ext    = ".txt"
-# exe    = 'scoop\shims\notepad++.exe'
-# progid = 'Applications\notepad++.exe'

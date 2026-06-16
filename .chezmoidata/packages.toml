@@ -16,6 +16,10 @@ apps = [
   "extras/tex-fmt",            # LaTeX formatter (was loose binary on Desktop)
   "extras/sumatrapdf",         # PDF viewer for latex-workshop synctex
   "extras/handy",              # local speech-to-text (startup entry below; settings age-encrypted)
+  "main/uv",                   # fast Python package/venv manager
+  "extras/irfanview",          # image viewer (full manifest = bundles plugins pack)
+  "extras/jabref",             # BibTeX/bibliography manager
+  "extras/mpv",                # lightweight video player
   # Textify: scoop Textify-Portable ships only setup.exe (no runnable exe) — installed via winget instead.
   # "main/pwsh", "main/git", "main/ripgrep", "extras/vscode", ...
 ]

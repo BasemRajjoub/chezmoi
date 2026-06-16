@@ -20,6 +20,7 @@ apps = [
   "extras/irfanview",          # image viewer (full manifest = bundles plugins pack)
   "extras/jabref",             # BibTeX/bibliography manager
   "extras/mpv",                # lightweight video player
+  "extras/vlc",                # media player (default for video/audio, see [[defaults]])
   # Textify: scoop Textify-Portable ships only setup.exe (no runnable exe) — installed via winget instead.
   # "main/pwsh", "main/git", "main/ripgrep", "extras/vscode", ...
 ]
@@ -72,3 +73,52 @@ args = ""
 name = "Textify"
 exe  = 'AppData\Local\Programs\Textify\Textify.exe'
 args = "-hidewnd"
+
+# Default file-type associations, set per-user (no admin) via the UserChoice hash
+# in run_onchange_after_30-default-apps.ps1.tmpl. Extension lists adapted from
+# github.com/Mobasheera/fix-windows-default-apps (which used the SetUserFTA tool);
+# we compute the hash in pure PowerShell instead — no external binary.
+#   name   = label for logging
+#   exe    = handler path under $HOME (backslashes); whole entry skipped if missing
+#   progid = ProgId registered to the exe ('Applications\<exe-leaf>' for portable apps)
+#   exts   = extensions (incl. dot, lowercase) to point at this app
+# No auto-reconcile: removing an ext/entry does NOT revert it — delete its HKCU
+# UserChoice key manually (or reassign to another app here).
+[[defaults]]
+name   = "VLC"
+exe    = 'scoop\apps\vlc\current\vlc.exe'
+progid = 'Applications\vlc.exe'
+exts   = [
+  # video
+  ".3gp", ".3g2", ".asf", ".avi", ".divx", ".flv", ".m2ts", ".m4v", ".mkv",
+  ".mov", ".mp4", ".mpeg", ".mpg", ".mts", ".ogm", ".ogv", ".rm", ".rmvb",
+  ".ts", ".vob", ".webm", ".wmv",
+  # audio
+  ".aac", ".ac3", ".aiff", ".ape", ".au", ".dts", ".flac", ".m4a", ".mid",
+  ".midi", ".mp3", ".oga", ".ogg", ".opus", ".ra", ".wav", ".wma", ".wv",
+  ".xm", ".mod", ".it", ".s3m",
+]
+
+[[defaults]]
+name   = "SumatraPDF"
+exe    = 'scoop\apps\sumatrapdf\current\SumatraPDF.exe'
+progid = 'Applications\SumatraPDF.exe'
+exts   = [
+  ".pdf", ".xps", ".oxps", ".epub", ".mobi", ".fb2", ".djvu", ".chm",
+  ".cbz", ".cbr", ".cbt", ".cb7",
+]
+
+[[defaults]]
+name   = "IrfanView"
+exe    = 'scoop\apps\irfanview\current\i_view64.exe'
+progid = 'Applications\i_view64.exe'
+exts   = [
+  ".ani", ".b3d", ".bmp", ".dib", ".clp", ".crw", ".cr2", ".cr3", ".cur",
+  ".dcm", ".acr", ".ima", ".dds", ".ecw", ".fmf", ".exr", ".g3", ".gif",
+  ".hdp", ".jxr", ".wdp", ".heic", ".ico", ".iff", ".lbm", ".jls", ".jp2",
+  ".jpc", ".j2k", ".jpf", ".jpg", ".jpeg", ".jfif", ".jpe", ".jpm", ".jxl",
+  ".mng", ".jng", ".pbm", ".pcd", ".pcx", ".dcx", ".pgm", ".png", ".ppm",
+  ".psd", ".psb", ".psp", ".qoi", ".ras", ".sun", ".raw", ".rle", ".sff",
+  ".sgi", ".rgb", ".sid", ".tga", ".tif", ".tiff", ".wbmp", ".webp", ".wmf",
+  ".xbm", ".xpm",
+]

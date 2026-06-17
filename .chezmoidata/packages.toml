@@ -27,6 +27,7 @@ apps = [
   "main/ripgrep",              # fast grep tool for CLI/editors
   "extras/7zip",               # compression utility
   "main/jq",                   # JSON processor
+  "main/claude-code",          # Claude Code CLI
   "extras/spacesniffer",       # disk space analyzer (visual treemap)
   "extras/vscode",             # code editor (settings managed via dotfiles)
   # PowerToys: scoop/winget both require admin or complex MSI extraction; use existing install.

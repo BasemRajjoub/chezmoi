@@ -27,7 +27,7 @@ apps = [
   "main/ripgrep",              # fast grep tool for CLI/editors
   "extras/7zip",               # compression utility
   "main/jq",                   # JSON processor
-  "extras/powertoys",          # Microsoft Power Tools (portable via scoop)
+  # PowerToys: scoop/winget both require admin or complex MSI extraction; use existing install.
   # Textify: scoop Textify-Portable ships only setup.exe (no runnable exe) — installed via winget instead.
 ]
 
@@ -82,7 +82,7 @@ args = "-hidewnd"
 
 [[startup]]
 name = "PowerToys"
-exe  = 'scoop\apps\powertoys\current\PowerToys.exe'
+exe  = 'AppData\Local\PowerToys\PowerToys.exe'
 args = ""
 
 # Default file-type associations, set per-user (no admin) via the UserChoice hash

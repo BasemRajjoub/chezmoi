@@ -21,8 +21,13 @@ apps = [
   "extras/jabref",             # BibTeX/bibliography manager
   "extras/mpv",                # lightweight video player
   "extras/vlc",                # media player (default for video/audio, see [[defaults]])
+  # Power tools
+  "main/pwsh",                 # PowerShell 7 (modern, cross-platform)
+  "main/git",                  # version control
+  "main/ripgrep",              # fast grep tool for CLI/editors
+  "extras/7zip",               # compression utility
+  "main/jq",                   # JSON processor
   # Textify: scoop Textify-Portable ships only setup.exe (no runnable exe) — installed via winget instead.
-  # "main/pwsh", "main/git", "main/ripgrep", "extras/vscode", ...
 ]
 
 # Per-machine extras: installed ONLY on the matching hostname (chezmoi .chezmoi.hostname).

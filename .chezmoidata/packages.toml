@@ -27,6 +27,7 @@ apps = [
   "main/ripgrep",              # fast grep tool for CLI/editors
   "extras/7zip",               # compression utility
   "main/jq",                   # JSON processor
+  "extras/powertoys",          # Microsoft Power Tools (FancyZones, PowerRename, Run, etc.)
   # Textify: scoop Textify-Portable ships only setup.exe (no runnable exe) — installed via winget instead.
 ]
 
@@ -78,6 +79,11 @@ args = ""
 name = "Textify"
 exe  = 'AppData\Local\Programs\Textify\Textify.exe'
 args = "-hidewnd"
+
+[[startup]]
+name = "PowerToys"
+exe  = 'scoop\apps\powertoys\current\PowerToys.exe'
+args = ""
 
 # Default file-type associations, set per-user (no admin) via the UserChoice hash
 # in run_onchange_after_30-default-apps.ps1.tmpl. Extension lists adapted from

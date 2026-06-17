@@ -30,6 +30,7 @@ apps = [
   "main/claude-code",          # Claude Code CLI
   "extras/spacesniffer",       # disk space analyzer (visual treemap)
   "extras/vscode",             # code editor (settings managed via dotfiles)
+  "extras/brave",              # privacy-focused browser (config managed via dotfiles)
   # PowerToys: scoop/winget both require admin or complex MSI extraction; use existing install.
   # Textify: scoop Textify-Portable ships only setup.exe (no runnable exe) — installed via winget instead.
 ]

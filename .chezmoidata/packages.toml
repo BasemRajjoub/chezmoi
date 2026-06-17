@@ -27,8 +27,8 @@ apps = [
   "main/ripgrep",              # fast grep tool for CLI/editors
   "extras/7zip",               # compression utility
   "main/jq",                   # JSON processor
+  "extras/powertoys",          # Microsoft Power Tools (portable via scoop)
   # Textify: scoop Textify-Portable ships only setup.exe (no runnable exe) — installed via winget instead.
-  # PowerToys: scoop version has installer issues (1618 error); use winget instead (see below).
 ]
 
 # Per-machine extras: installed ONLY on the matching hostname (chezmoi .chezmoi.hostname).
@@ -45,7 +45,6 @@ apps = [
 # ERRORS if missing — turns a silent failed install into a loud failure.
 apps = [
   { id = "rammichael.Textify", assertExe = 'AppData\Local\Programs\Textify\Textify.exe' },
-  { id = "Microsoft.PowerToys", assertExe = 'AppData\Local\Microsoft\PowerToys\PowerToys.exe' },
 ]
 
 # Run-at-login entries (HKCU Run key, no admin). exe = path under $HOME, literal backslashes.
@@ -83,7 +82,7 @@ args = "-hidewnd"
 
 [[startup]]
 name = "PowerToys"
-exe  = 'AppData\Local\Microsoft\PowerToys\PowerToys.exe'
+exe  = 'scoop\apps\powertoys\current\PowerToys.exe'
 args = ""
 
 # Default file-type associations, set per-user (no admin) via the UserChoice hash

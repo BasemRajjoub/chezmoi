@@ -28,6 +28,7 @@ apps = [
   "extras/7zip",               # compression utility
   "main/jq",                   # JSON processor
   "main/claude-code",          # Claude Code CLI
+  "main/gh",                   # GitHub CLI
   "extras/spacesniffer",       # disk space analyzer (visual treemap)
   "extras/vscode",             # code editor (settings managed via dotfiles)
   "extras/brave",              # privacy-focused browser (config managed via dotfiles)

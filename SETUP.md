@@ -68,7 +68,9 @@ chezmoi diff ; chezmoi apply -v        # decrypts to target using key.txt
 - Regenerate a lost key: `age-keygen -o $env:USERPROFILE\.config\chezmoi\key.txt`,
   then paste the new `Public key:` into `.chezmoi.toml.tmpl` `recipient` and re-encrypt.
 - New machine: copy `key.txt` to `~/.config/chezmoi/` BEFORE `chezmoi apply`.
-  With no encrypted files present, apply works without the key.
+  Repo currently has one encrypted file (Handy settings) — without the key that
+  file fails to decrypt, but everything else applies fine. With no encrypted
+  files at all, apply works without the key.
 - Alternative (no secrets at rest): pull from a password manager at apply time via
   template funcs (`bitwarden`, `onepassword`, `keepassxc`). Costs a CLI unlocked per apply.
 

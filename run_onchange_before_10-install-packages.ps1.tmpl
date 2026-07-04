@@ -16,7 +16,7 @@ if ($haveBuckets -notcontains "{{ .name }}") { scoop bucket add {{ .name }}{{ if
 scoop install {{ range .scoop.apps }}{{ . }} {{ end }}{{ range $extra }}{{ . }} {{ end }}
 
 {{ range .winget.apps -}}
-if (-not (winget list --id {{ .id }} -e 2>$null | Select-String "{{ .id }}")) {
+if (-not (winget list --id {{ .id }} -e 2>$null | Select-String -SimpleMatch "{{ .id }}")) {
     winget install -e --id {{ .id }} --accept-source-agreements --accept-package-agreements
 }
 {{ if hasKey . "assertExe" -}}

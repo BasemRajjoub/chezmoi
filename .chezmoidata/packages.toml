@@ -49,6 +49,14 @@ apps = [
 # ERRORS if missing — turns a silent failed install into a loud failure.
 apps = [
   { id = "rammichael.Textify", assertExe = 'AppData\Local\Programs\Textify\Textify.exe' },
+  # Common native-app runtime prereqs, installed just in case — cheap, idempotent
+  # (winget skips if already present), all system-wide so prompt UAC once each.
+  # No assertExe on any of these: they land in WinSxS/System32/Program Files
+  # with no single stable exe path to check.
+  { id = "Microsoft.VCRedist.2015+.x64" },   # MSVCP140.dll/VCRUNTIME140.dll — needed by Handy, most native/Tauri apps
+  { id = "Microsoft.VCRedist.2015+.x86" },   # same, for any 32-bit binaries
+  { id = "Microsoft.DotNet.DesktopRuntime.8" }, # WinForms/WPF apps (LTS)
+  { id = "Microsoft.EdgeWebView2Runtime" },  # Tauri/Electron-hybrid UIs (Handy, etc.) — usually preinstalled on Win11, not guaranteed on Win10
 ]
 
 # Run-at-login entries (HKCU Run key, no admin). exe = path under $HOME, literal backslashes.

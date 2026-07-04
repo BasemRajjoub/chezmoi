@@ -8,4 +8,10 @@ if (-not (Get-Command scoop -ErrorAction SilentlyContinue)) {
 }
 scoop install main/git main/chezmoi
 
-chezmoi init --apply https://github.com/BasemRajjoub/chezmoi.git
+# `chezmoi init` no-ops if source already cloned (no git pull) — safe to re-run.
+# `chezmoi update` pulls latest + applies, so reruns always pick up repo changes.
+$src = Join-Path $env:USERPROFILE ".local\share\chezmoi"
+if (-not (Test-Path $src)) {
+    chezmoi init https://github.com/BasemRajjoub/chezmoi.git
+}
+chezmoi update

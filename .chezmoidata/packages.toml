@@ -7,7 +7,6 @@ buckets = [
 ]
 apps = [
   "main/chezmoi",
-  "extras/age",                # secret encrypt/decrypt for chezmoi (key at ~/.config/chezmoi/key.txt)
   "extras/copyq",
   "extras/everything",
   "extras/caffeine",           # keep-awake (startup entry below)
@@ -15,7 +14,7 @@ apps = [
   "main/tectonic",             # LaTeX engine (was loose binary on Desktop)
   "extras/tex-fmt",            # LaTeX formatter (was loose binary on Desktop)
   "extras/sumatrapdf",         # PDF viewer for latex-workshop synctex
-  "extras/handy",              # local speech-to-text (startup entry below; settings age-encrypted)
+  "extras/handy",              # local speech-to-text (startup entry below)
   "main/uv",                   # fast Python package/venv manager
   "extras/irfanview",          # image viewer (full manifest = bundles plugins pack)
   "extras/jabref",             # BibTeX/bibliography manager

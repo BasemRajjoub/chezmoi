@@ -16,7 +16,7 @@ Remote: `https://github.com/BasemRajjoub/chezmoi.git`
 
 ```
 ~/.local/share/chezmoi/
-├── .chezmoi.toml.tmpl                          # PS interpreter + age encryption config
+├── .chezmoi.toml.tmpl                          # PS interpreter config
 ├── .chezmoidata/packages.toml                  # ← declarative source of truth
 ├── run_onchange_before_10-install-packages.ps1.tmpl   # scoop/winget installer
 ├── run_onchange_after_20-startup-apps.ps1.tmpl        # HKCU Run keys from [[startup]] (+ orphan reconcile)
@@ -53,26 +53,13 @@ Add a setting file under chezmoi management: `chezmoi add <path>` (e.g.
 
 ---
 
-## Secrets (age encryption)
+## Secrets
 
-Secrets are encrypted at rest in the repo with [age](https://github.com/FiloSottile/age).
-Private identity lives only at `~/.config/chezmoi/key.txt` — never committed. The
-public recipient is in `.chezmoi.toml.tmpl` (safe to push).
-
-```powershell
-# add a secret file (stored as encrypted_<name>.age in the repo)
-chezmoi add --encrypt $env:USERPROFILE\.ssh\id_ed25519
-chezmoi diff ; chezmoi apply -v        # decrypts to target using key.txt
-```
-
-- Regenerate a lost key: `age-keygen -o $env:USERPROFILE\.config\chezmoi\key.txt`,
-  then paste the new `Public key:` into `.chezmoi.toml.tmpl` `recipient` and re-encrypt.
-- New machine: copy `key.txt` to `~/.config/chezmoi/` BEFORE `chezmoi apply`.
-  Repo currently has one encrypted file (Handy settings) — without the key that
-  file fails to decrypt, but everything else applies fine. With no encrypted
-  files at all, apply works without the key.
-- Alternative (no secrets at rest): pull from a password manager at apply time via
-  template funcs (`bitwarden`, `onepassword`, `keepassxc`). Costs a CLI unlocked per apply.
+None tracked. Repo is public and holds no encrypted files or keys — fresh-machine
+apply needs zero manual steps. If a secret ever needs tracking, use age encryption
+(`chezmoi add --encrypt <path>`, private key stays local at `~/.config/chezmoi/key.txt`,
+never committed) or pull from a password manager at apply time via template funcs
+(`bitwarden`, `onepassword`, `keepassxc`).
 
 ---
 
@@ -118,4 +105,4 @@ Or, if scoop+chezmoi already present:
 chezmoi init --apply https://github.com/BasemRajjoub/chezmoi.git
 ```
 
-Then drop your age `key.txt` into `~/.config/chezmoi/` if you use encrypted secrets.
+No further manual steps — everything installs and configures itself.

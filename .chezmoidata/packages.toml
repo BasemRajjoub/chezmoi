@@ -16,6 +16,7 @@ apps = [
   "extras/sumatrapdf",         # PDF viewer for latex-workshop synctex
   "extras/handy",              # local speech-to-text (startup entry below)
   "main/uv",                   # fast Python package/venv manager
+  "main/pixi",                 # conda-based package/workflow manager
   "extras/irfanview",          # image viewer (full manifest = bundles plugins pack)
   "extras/jabref",             # BibTeX/bibliography manager
   "extras/mpv",                # lightweight video player

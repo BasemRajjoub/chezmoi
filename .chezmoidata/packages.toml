@@ -29,6 +29,7 @@ apps = [
   "main/jq",                   # JSON processor
   "main/claude-code",          # Claude Code CLI
   "main/gh",                   # GitHub CLI
+  "main/syncthing",            # continuous file sync (startup entry below)
   "extras/spacesniffer",       # disk space analyzer (visual treemap)
   "extras/vscode",             # code editor (settings managed via dotfiles)
   "extras/brave",              # privacy-focused browser (config managed via dotfiles)
@@ -97,6 +98,11 @@ args = "-hidewnd"
 name = "PowerToys"
 exe  = 'AppData\Local\PowerToys\PowerToys.exe'
 args = ""
+
+[[startup]]
+name = "Syncthing"
+exe  = 'scoop\apps\syncthing\current\syncthing.exe'
+args = "-no-browser"
 
 # Default file-type associations, set per-user (no admin) via the UserChoice hash
 # in run_onchange_after_30-default-apps.ps1.tmpl. Extension lists adapted from
